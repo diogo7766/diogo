@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diogo Souza — portfólio</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --bg-raised: #161923;
+      --bg-terminal: #0b0d13;
+      --border: #262a38;
+      --text: #e7e6e2;
+      --text-dim: #9297a8;
+      --text-faint: #565c6e;
+      --accent: #e8b04b;
+      --accent-dim: #8a6b2e;
+      --teal: #5eb8ab;
+      --pink: #d97fa0;
+      --radius: 10px;
+      --mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+      --sans: 'Space Grotesk', 'Inter', sans-serif;
+      --body: 'Inter', sans-serif;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---------- TOP BAR ---------- */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(15, 17, 23, 0.85);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    .topbar-inner .name {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .topbar-inner .tag {
+      color: var(--accent);
+      background: rgba(232, 176, 75, 0.1);
+      border: 1px solid rgba(232, 176, 75, 0.3);
+      padding: 2px 8px;
+      border-radius: 100px;
+      font-size: 11px;
+    }
+
+    /* ---------- HERO / TERMINAL ---------- */
+    .hero {
+      padding: 64px 0 40px;
+    }
+
+    .terminal {
+      background: var(--bg-terminal);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: var(--bg-raised);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .dot.red {
+      background: #e0605a;
+    }
+
+    .dot.yellow {
+      background: #e3b341;
+    }
+
+    .dot.green {
+      background: #5db07a;
+    }
+
+    .terminal-title {
+      margin-left: 8px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-faint);
+    }
+
+    .terminal-body {
+      padding: 24px;
+      font-family: var(--mono);
+      font-size: 14.5px;
+    }
+
+    .terminal-body .line {
+      margin: 0 0 6px;
+      white-space: pre-wrap;
+    }
+
+    .prompt {
+      color: var(--teal);
+    }
+
+    .path {
+      color: var(--accent);
+    }
+
+    .out {
+      color: var(--text-dim);
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 16px;
+      background: var(--accent);
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .hero h1 {
+      font-family: var(--sans);
+      font-size: clamp(28px, 5vw, 40px);
+      margin: 28px 0 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero .role {
+      font-family: var(--mono);
+      color: var(--text-dim);
+      font-size: 15px;
+    }
+
+    /* ---------- SECTION SHELL ---------- */
+    section {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-family: var(--mono);
+    }
+
+    .section-head .filename {
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .section-head .filetag {
+      color: var(--text-faint);
+      font-size: 12px;
+    }
+
+    .card {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    /* README */
+    .readme p {
+      color: var(--text-dim);
+      margin: 0 0 12px;
+    }
+
+    .readme p:last-child {
+      margin-bottom: 0;
+    }
+
+    .readme strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* commit log / changelog signature element */
+    .log {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .log li {
+      position: relative;
+      padding: 0 0 22px 28px;
+      font-family: var(--mono);
+      font-size: 13.5px;
+    }
+
+    .log li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(232, 176, 75, 0.15);
+    }
+
+    .log li::after {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 14px;
+      width: 1px;
+      bottom: -4px;
+      background: var(--border);
+    }
+
+    .log li:last-child::after {
+      display: none;
+    }
+
+    .log .hash {
+      color: var(--teal);
+    }
+
+    .log .msg {
+      color: var(--text);
+      display: block;
+      margin: 3px 0 2px;
+      font-family: var(--body);
+      font-size: 14.5px;
+    }
+
+    .log .meta {
+      color: var(--text-faint);
+      font-size: 12px;
+    }
+
+    /* skills - dependency list */
+    .deps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .dep {
+      font-family: var(--mono);
+      font-size: 13px;
+      padding: 8px 12px;
+      border: 1px dashed var(--text-faint);
+      border-radius: 6px;
+      color: var(--text-faint);
+      background: transparent;
+    }
+
+    .dep.placeholder::before {
+      content: "// ";
+    }
+
+    /* projects - empty repo */
+    .repo-empty {
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 32px 20px;
+      text-align: center;
+      color: var(--text-faint);
+      font-family: var(--mono);
+      font-size: 13.5px;
+    }
+
+    .repo-empty .big {
+      color: var(--text-dim);
+      font-size: 14.5px;
+      margin-bottom: 6px;
+    }
+
+    .repo-empty .cmd {
+      color: var(--teal);
+    }
+
+    /* contact */
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 14px;
+    }
+
+    .contact-list .row {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .contact-list .key {
+      color: var(--text-faint);
+      min-width: 90px;
+    }
+
+    .contact-list .val {
+      color: var(--text-dim);
+    }
+
+    .contact-list .val.todo {
+      color: var(--text-faint);
+      font-style: italic;
+    }
+
+    footer {
+      padding: 30px 0 50px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-faint);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    footer .v {
+      color: var(--accent);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div class="topbar-inner">
+      <span class="name">diogo-souza</span>
+      <span class="tag">v0.1.0-alpha</span>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <section class="hero">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="terminal-title">diogo@dev — WK </span>
+        </div>
+        <div class="terminal-body">
+          <p class="line"><span class="prompt">diogo@dev</span><span class="path"> ~ %</span> whoami</p>
+          <p class="line out" id="typed-line"></p>
+        </div>
+      </div>
+      <h1>Diogo Souza</h1>
+      <p class="role">estudante de TI · construindo esse portfólio para o público</p>
+    </section>
+
+    <section id="sobre">
+      <div class="section-head">
+        <span class="filename">README.md</span>
+        <span class="filetag">sobre</span>
+      </div>
+      <div class="card readme">
+        <p>Olá! Sou o <strong>Diogo</strong>, estudante da área de TI. Este site está sendo construído aos poucos —
+          pense nele como um repositório em desenvolvimento ativo: hoje é o commit inicial, e cada nova habilidade
+          ou projeto vira uma nova entrada no histórico abaixo.</p>
+        <p>A ideia não é fingir que já está tudo pronto e sim registrar o processo de aprender, na prática, e deixar
+          isso visível para quem chegar aqui.</p>
+      </div>
+    </section>
+
+    <section id="historico">
+      <div class="section-head">
+        <span class="filename">git log</span>
+        <span class="filetag">histórico</span>
+      </div>
+      <ul class="log">
+        <li>
+          <span class="hash">a1b2</span>
+          <span class="msg">commit inicial: portfólio no ar</span>
+          <span class="meta">estrutura criada · aguardando próximos commits</span>
+        </li>
+        <li>
+          <span class="hash">HTML 5</span>
+          <span class="msg">Primeira habilidade check</span>
+          <span class="meta">TODO</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="stack">
+      <div class="section-head">
+        <span class="filename">stack.json</span>
+        <span class="filetag">habilidades</span>
+      </div>
+      <div class="card">
+        <div class="deps">
+          <span class="dep placeholder">HTML</span>
+          <span class="dep placeholder">GITHUB</span>
+          <span class="dep placeholder">CSS</span>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos">
+      <div class="section-head">
+        <span class="filename">projetos/</span>
+        <span class="filetag">repositórios</span>
+      </div>
+      <div class="repo-empty">
+        <div class="big">Nenhum projeto commitado ainda.</div>
+        <div><span class="cmd"></span> meu-primeiro-projeto</div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="section-head">
+        <span class="filename">contato.env</span>
+        <span class="filetag">contato</span>
+      </div>
+      <div class="card contact-list">
+        <div class="row"><span class="key">diogoferreira7766@gmail.com</span><span class="val todo"></span></div>
+        <div class="row"><span class="key">diogosan-acha</span><span class="val todo"></span></div>
+        <div class="row"><span class="key">Diogo Souza </span><span class="val todo"></span></div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <span class="v">v0.1.0</span> — última atualização: commit inicial
+  </footer>
+
+  <script>
+    const text = "Diogo Souza — estudante de TI, construindo minha carreira em público.";
+    const el = document.getElementById('typed-line');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduced) {
+      el.textContent = text;
+    } else {
+      let i = 0;
+      function typeChar() {
+        if (i <= text.length) {
+          el.textContent = text.slice(0, i);
+          i++;
+          setTimeout(typeChar, 22);
+        } else {
+          el.innerHTML = text + '<span class="cursor"></span>';
+        }
+      }
+      typeChar();
+    }
+  </script>
+
+</body>
+
+</html>
